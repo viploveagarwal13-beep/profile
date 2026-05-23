@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Viplove Agarwal — Performance Engineering Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#09090b;
+  --bg2:#111113;
+  --bg3:#18181b;
+  --border:#27272a;
+  --accent:#f97316;
+  --accent2:#fb923c;
+  --text:#fafafa;
+  --muted:#71717a;
+  --muted2:#a1a1aa;
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1.2rem 2.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(9,9,11,0.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.nav-logo{
+  font-family:var(--mono);
+  font-size:0.8rem;
+  color:var(--accent);
+  letter-spacing:0.08em;
+  text-decoration:none;
+}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  font-size:0.78rem;
+  font-weight:400;
+  color:var(--muted2);
+  text-decoration:none;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--text)}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:8rem 2.5rem 5rem;
+  position:relative;
+  overflow:hidden;
+}
+.hero-grid-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(249,115,22,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(249,115,22,0.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%);
+}
+.hero-glow{
+  position:absolute;
+  top:-200px;right:-200px;
+  width:700px;height:700px;
+  background:radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{
+  max-width:1100px;margin:0 auto;
+  position:relative;z-index:1;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-family:var(--mono);font-size:0.72rem;
+  color:var(--accent);
+  border:1px solid rgba(249,115,22,0.3);
+  padding:0.3rem 0.9rem;
+  border-radius:2px;
+  margin-bottom:2rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  animation:fadeUp 0.8s ease both;
+}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(3rem,7vw,6rem);
+  font-weight:400;
+  line-height:1.05;
+  letter-spacing:-0.02em;
+  margin-bottom:1.5rem;
+  animation:fadeUp 0.8s 0.15s ease both;
+}
+.hero h1 em{
+  font-style:italic;
+  color:var(--accent);
+}
+.hero-sub{
+  font-size:1.05rem;
+  color:var(--muted2);
+  max-width:560px;
+  line-height:1.8;
+  margin-bottom:2.5rem;
+  font-weight:300;
+  animation:fadeUp 0.8s 0.3s ease both;
+}
+.hero-cta{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  animation:fadeUp 0.8s 0.45s ease both;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.75rem 1.75rem;
+  font-family:var(--sans);
+  font-size:0.82rem;
+  font-weight:500;
+  letter-spacing:0.04em;
+  text-decoration:none;
+  border-radius:2px;
+  transition:all 0.2s;
+  cursor:pointer;border:none;
+}
+.btn-primary{
+  background:var(--accent);color:#09090b;
+}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn-ghost{
+  background:transparent;
+  color:var(--muted2);
+  border:1px solid var(--border);
+}
+.btn-ghost:hover{border-color:var(--muted);color:var(--text)}
+
+.hero-stats{
+  margin-top:4rem;
+  display:flex;gap:3rem;flex-wrap:wrap;
+  animation:fadeUp 0.8s 0.6s ease both;
+}
+.stat-item{}
+.stat-num{
+  font-family:var(--serif);
+  font-size:2.2rem;
+  color:var(--text);
+  line-height:1;
+  margin-bottom:0.2rem;
+}
+.stat-num span{color:var(--accent)}
+.stat-label{
+  font-size:0.75rem;
+  color:var(--muted);
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* SECTIONS COMMON */
+section{padding:6rem 2.5rem}
+.container{max-width:1100px;margin:0 auto}
+.section-label{
+  font-family:var(--mono);
+  font-size:0.7rem;
+  color:var(--accent);
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  margin-bottom:0.75rem;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(249,115,22,0.2);max-width:60px}
+.section-title{
+  font-family:var(--serif);
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:400;
+  line-height:1.1;
+  margin-bottom:3rem;
+  letter-spacing:-0.01em;
+}
+
+/* ABOUT */
+#about{background:var(--bg2)}
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5rem;
+  align-items:start;
+}
+.about-text p{
+  color:var(--muted2);
+  margin-bottom:1.25rem;
+  font-size:1rem;
+  line-height:1.85;
+}
+.about-text p strong{color:var(--text);font-weight:500}
+.about-cards{display:flex;flex-direction:column;gap:1rem}
+.about-card{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:1.25rem 1.5rem;
+  transition:border-color 0.2s;
+}
+.about-card:hover{border-color:rgba(249,115,22,0.3)}
+.about-card-icon{
+  font-size:1.3rem;margin-bottom:0.5rem;
+}
+.about-card h4{
+  font-size:0.85rem;font-weight:500;
+  margin-bottom:0.25rem;color:var(--text);
+}
+.about-card p{font-size:0.8rem;color:var(--muted);line-height:1.5}
+
+/* EXPERIENCE */
+#experience{background:var(--bg)}
+.exp-list{display:flex;flex-direction:column;gap:0}
+.exp-item{
+  display:grid;
+  grid-template-columns:200px 1fr;
+  gap:3rem;
+  padding:3rem 0;
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+.exp-item:first-child{border-top:1px solid var(--border)}
+.exp-meta{}
+.exp-period{
+  font-family:var(--mono);
+  font-size:0.72rem;
+  color:var(--muted);
+  letter-spacing:0.06em;
+  margin-bottom:0.5rem;
+}
+.exp-company{
+  font-size:1rem;
+  font-weight:500;
+  color:var(--accent);
+  margin-bottom:0.2rem;
+}
+.exp-loc{
+  font-size:0.75rem;
+  color:var(--muted);
+}
+.exp-content{}
+.exp-role{
+  font-family:var(--serif);
+  font-size:1.4rem;
+  font-weight:400;
+  margin-bottom:1rem;
+  line-height:1.2;
+}
+.exp-desc{
+  color:var(--muted2);
+  font-size:0.9rem;
+  line-height:1.8;
+  margin-bottom:1.25rem;
+}
+.exp-tags{display:flex;flex-wrap:wrap;gap:0.5rem}
+.tag{
+  font-family:var(--mono);
+  font-size:0.68rem;
+  padding:0.25rem 0.65rem;
+  border:1px solid var(--border);
+  border-radius:2px;
+  color:var(--muted2);
+  letter-spacing:0.04em;
+}
+.tag-accent{border-color:rgba(249,115,22,0.4);color:var(--accent)}
+.exp-bullets{
+  list-style:none;
+  margin-bottom:1.25rem;
+}
+.exp-bullets li{
+  font-size:0.88rem;
+  color:var(--muted2);
+  padding:0.3rem 0 0.3rem 1.2rem;
+  position:relative;
+  line-height:1.7;
+}
+.exp-bullets li::before{
+  content:'→';
+  position:absolute;left:0;
+  color:var(--accent);
+  font-size:0.75rem;
+  top:0.38rem;
+}
+
+/* SKILLS */
+#skills{background:var(--bg2)}
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.5rem;
+}
+.skill-group{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:1.75rem;
+  transition:border-color 0.2s,transform 0.2s;
+}
+.skill-group:hover{
+  border-color:rgba(249,115,22,0.3);
+  transform:translateY(-2px);
+}
+.skill-group-title{
+  font-family:var(--mono);
+  font-size:0.72rem;
+  letter-spacing:0.1em;
+  color:var(--accent);
+  text-transform:uppercase;
+  margin-bottom:1.25rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.skill-group-title::before{content:'//';opacity:0.4}
+.skill-pills{display:flex;flex-wrap:wrap;gap:0.5rem}
+.skill-pill{
+  font-size:0.78rem;
+  padding:0.3rem 0.75rem;
+  background:rgba(249,115,22,0.06);
+  border:1px solid rgba(249,115,22,0.15);
+  border-radius:2px;
+  color:var(--muted2);
+  transition:all 0.15s;
+}
+.skill-pill:hover{background:rgba(249,115,22,0.12);color:var(--text)}
+
+/* PROJECTS */
+#projects{background:var(--bg)}
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:1.5rem;
+}
+.project-card{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:2rem;
+  transition:border-color 0.2s,transform 0.2s;
+  position:relative;
+  overflow:hidden;
+}
+.project-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),transparent);
+  opacity:0;transition:opacity 0.2s;
+}
+.project-card:hover{border-color:rgba(249,115,22,0.3);transform:translateY(-3px)}
+.project-card:hover::before{opacity:1}
+.project-num{
+  font-family:var(--mono);
+  font-size:0.68rem;
+  color:var(--muted);
+  margin-bottom:1rem;
+  letter-spacing:0.1em;
+}
+.project-name{
+  font-family:var(--serif);
+  font-size:1.25rem;
+  font-weight:400;
+  margin-bottom:0.75rem;
+  color:var(--text);
+}
+.project-desc{
+  font-size:0.85rem;
+  color:var(--muted2);
+  line-height:1.75;
+  margin-bottom:1.25rem;
+}
+.project-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+
+/* CONTACT */
+#contact{background:var(--bg2)}
+.contact-inner{
+  max-width:700px;
+}
+.contact-big{
+  font-family:var(--serif);
+  font-size:clamp(2.5rem,5vw,4.5rem);
+  font-weight:400;
+  line-height:1.05;
+  margin-bottom:1.5rem;
+  letter-spacing:-0.02em;
+}
+.contact-big em{font-style:italic;color:var(--accent)}
+.contact-sub{
+  font-size:1rem;
+  color:var(--muted2);
+  line-height:1.8;
+  margin-bottom:2.5rem;
+  max-width:500px;
+}
+.contact-links{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+.contact-detail{
+  display:flex;flex-direction:column;gap:0.75rem;
+}
+.contact-row{
+  display:flex;align-items:center;gap:1rem;
+  font-size:0.88rem;
+  color:var(--muted2);
+}
+.contact-row span:first-child{
+  font-family:var(--mono);
+  font-size:0.7rem;
+  color:var(--muted);
+  min-width:60px;
+  letter-spacing:0.06em;
+}
+.contact-row a{color:var(--muted2);text-decoration:none;transition:color 0.2s}
+.contact-row a:hover{color:var(--accent)}
+
+/* FOOTER */
+footer{
+  padding:2rem 2.5rem;
+  border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1rem;
+}
+footer p{
+  font-family:var(--mono);
+  font-size:0.7rem;
+  color:var(--muted);
+  letter-spacing:0.06em;
+}
+
+/* SCROLL REVEAL */
+.reveal{
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* CASE STUDIES */
+#case-studies{background:var(--bg2)}
+.cs-intro{
+  font-size:0.95rem;color:var(--muted2);
+  max-width:620px;line-height:1.85;margin-bottom:3rem;
+}
+.cs-list{
+  display:flex;flex-direction:column;gap:0;
+  margin-bottom:4rem;
+}
+.cs-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.4rem 0;
+  border-bottom:1px solid var(--border);
+  gap:1.5rem;
+  cursor:pointer;
+  transition:opacity 0.2s;
+}
+.cs-row:first-child{border-top:1px solid var(--border)}
+.cs-row:hover .cs-row-title{color:var(--accent)}
+.cs-row-left{display:flex;align-items:center;gap:1.5rem;flex:1;min-width:0}
+.cs-row-num{
+  font-family:var(--mono);font-size:0.68rem;
+  color:var(--muted);min-width:28px;letter-spacing:0.08em;
+}
+.cs-row-info{}
+.cs-row-company{
+  font-family:var(--mono);font-size:0.68rem;
+  color:var(--accent);letter-spacing:0.06em;text-transform:uppercase;
+  margin-bottom:0.15rem;
+}
+.cs-row-title{
+  font-size:0.95rem;font-weight:500;color:var(--text);
+  transition:color 0.2s;
+}
+.cs-row-right{display:flex;align-items:center;gap:1rem;flex-shrink:0}
+.cs-badge{
+  font-family:var(--mono);font-size:0.65rem;
+  padding:0.2rem 0.6rem;border-radius:2px;
+  border:1px solid rgba(249,115,22,0.25);
+  color:var(--accent);letter-spacing:0.06em;
+}
+.cs-arrow{
+  font-size:0.85rem;color:var(--muted);
+  transition:transform 0.2s,color 0.2s;
+}
+.cs-row:hover .cs-arrow{transform:translateX(4px);color:var(--accent)}
+.cs-row-link{text-decoration:none}
+
+/* FULL CASE STUDY */
+.cs-full{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:4px;
+  overflow:hidden;
+}
+.cs-full-header{
+  padding:3rem;
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.cs-full-header::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--accent),transparent 60%);
+}
+.cs-full-eyebrow{
+  font-family:var(--mono);font-size:0.68rem;
+  color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.cs-full-title{
+  font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);
+  font-weight:400;line-height:1.15;margin-bottom:0.75rem;
+}
+.cs-full-meta{
+  font-size:0.8rem;color:var(--muted);
+  font-family:var(--mono);letter-spacing:0.05em;
+  margin-bottom:2rem;
+}
+.cs-metrics{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
+  margin-top:2rem;
+}
+.cs-metric{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:4px;padding:1.25rem;
+}
+.cs-metric-num{
+  font-family:var(--serif);font-size:2rem;
+  color:var(--accent);line-height:1;margin-bottom:0.3rem;
+}
+.cs-metric-label{
+  font-size:0.72rem;color:var(--muted);
+  letter-spacing:0.06em;text-transform:uppercase;
+  line-height:1.4;
+}
+.cs-body{padding:3rem}
+.cs-section{margin-bottom:3rem}
+.cs-section:last-child{margin-bottom:0}
+.cs-section-title{
+  font-family:var(--mono);font-size:0.7rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:1.25rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.cs-section-title::before{content:'//';opacity:0.4}
+.cs-prose{font-size:0.9rem;color:var(--muted2);line-height:1.85}
+.cs-prose p{margin-bottom:1rem}
+.cs-prose strong{color:var(--text);font-weight:500}
+
+/* Architecture steps */
+.cs-arch{display:flex;flex-direction:column;gap:0.75rem}
+.cs-arch-step{
+  display:flex;align-items:flex-start;gap:1.25rem;
+  padding:1rem 1.25rem;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:4px;
+}
+.cs-arch-num{
+  font-family:var(--mono);font-size:0.68rem;
+  color:var(--accent);min-width:24px;padding-top:0.1rem;
+  letter-spacing:0.06em;
+}
+.cs-arch-text{}
+.cs-arch-text strong{font-size:0.85rem;color:var(--text);font-weight:500;display:block;margin-bottom:0.2rem}
+.cs-arch-text span{font-size:0.8rem;color:var(--muted2)}
+
+/* Root cause table */
+.cs-rca{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.cs-rca-group{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:4px;padding:1.25rem;
+}
+.cs-rca-layer{
+  font-family:var(--mono);font-size:0.68rem;
+  color:var(--accent);letter-spacing:0.08em;
+  text-transform:uppercase;margin-bottom:0.75rem;
+}
+.cs-rca-items{list-style:none;display:flex;flex-direction:column;gap:0.4rem}
+.cs-rca-items li{
+  font-size:0.8rem;color:var(--muted2);
+  padding-left:1rem;position:relative;line-height:1.5;
+}
+.cs-rca-items li::before{content:'▸';position:absolute;left:0;color:var(--muted);font-size:0.65rem;top:0.2rem}
+
+/* Fixes table */
+.cs-fixes{display:flex;flex-direction:column;gap:0.5rem}
+.cs-fix{
+  display:grid;grid-template-columns:100px 1fr 1fr;gap:1rem;
+  padding:0.9rem 1.25rem;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:4px;align-items:start;
+}
+.cs-fix-layer{
+  font-family:var(--mono);font-size:0.65rem;
+  color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;
+  padding-top:0.1rem;
+}
+.cs-fix-what{font-size:0.82rem;color:var(--text);font-weight:500;line-height:1.4}
+.cs-fix-result{font-size:0.8rem;color:var(--muted2);line-height:1.4}
+
+/* Results table */
+.cs-results-table{width:100%;border-collapse:collapse;font-size:0.83rem}
+.cs-results-table th{
+  text-align:left;padding:0.6rem 1rem;
+  font-family:var(--mono);font-size:0.65rem;
+  color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;
+  border-bottom:1px solid var(--border);
+  background:var(--bg);
+}
+.cs-results-table td{
+  padding:0.7rem 1rem;
+  border-bottom:1px solid rgba(39,39,42,0.5);
+  color:var(--muted2);vertical-align:top;
+}
+.cs-results-table tr:last-child td{border-bottom:none}
+.cs-results-table .after{color:var(--accent);font-weight:500}
+.cs-results-table tr:hover td{background:rgba(249,115,22,0.03)}
+
+/* Principles */
+.cs-principles{display:flex;flex-direction:column;gap:1rem}
+.cs-principle{
+  display:flex;gap:1.25rem;
+  padding:1.25rem;
+  background:var(--bg);border:1px solid var(--border);border-radius:4px;
+}
+.cs-principle-num{
+  font-family:var(--serif);font-size:1.5rem;
+  color:rgba(249,115,22,0.3);line-height:1;min-width:28px;
+}
+.cs-principle-body{}
+.cs-principle-body strong{font-size:0.85rem;color:var(--text);font-weight:500;display:block;margin-bottom:0.3rem}
+.cs-principle-body p{font-size:0.8rem;color:var(--muted2);line-height:1.6}
+
+/* Stack pills */
+.cs-stack{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1rem}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .hero{padding:7rem 1.5rem 4rem}
+  .about-grid{grid-template-columns:1fr}
+  .exp-item{grid-template-columns:1fr;gap:1rem}
+  section{padding:4rem 1.5rem}
+  footer{flex-direction:column;align-items:flex-start}
+  .cs-metrics{grid-template-columns:1fr 1fr}
+  .cs-rca{grid-template-columns:1fr}
+  .cs-fix{grid-template-columns:1fr;gap:0.25rem}
+  .cs-fix-layer{font-size:0.6rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">va.perf</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#case-studies">Case Studies</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span></span> Available for senior roles
+    </div>
+    <h1>
+      Viplove<br/>
+      <em>Agarwal</em>
+    </h1>
+    <p class="hero-sub">
+      Performance Engineering Leader with 12+ years building resilience into high-scale payment systems. I find the bottleneck before your users do.
+    </p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn btn-primary">View Experience</a>
+      <a href="mailto:viploveagarwal13@gmail.com" class="btn btn-ghost">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">12<span>+</span></div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">40<span>%</span></div>
+        <div class="stat-label">Scripting Time Reduced</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4<span>+</span></div>
+        <div class="stat-label">Companies Scaled</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Bottlenecks Resolved</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">About</div>
+    <div class="section-title">The engineer behind<br/><em style="font-style:italic;color:var(--accent)">the numbers.</em></div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm a <strong>Performance Engineering Leader</strong> specialising in making large-scale distributed systems fast, reliable, and ready for whatever traffic throws at them. For over a decade I've been the person called when systems slow down, fall over, or need to handle 10× their current load.</p>
+        <p>At <strong>Nium</strong>, I lead the performance engineering function across global payment rails — reconciliation, cards, and mass payment platforms — ensuring every service meets SLA under real-world peak conditions. Before that, at <strong>Paytm</strong>, I owned performance validation for the Wallet and Payment Gateway serving hundreds of millions of users.</p>
+        <p>I'm an early adopter of <strong>AI-assisted performance tooling</strong> — leveraging GitHub Copilot for JMeter script generation, the FeatherWand AI plugin, and AI-powered heap dump analysis to cut investigation and scripting time dramatically. I also co-built an automated reporting pipeline that eliminated manual report generation entirely.</p>
+        <p>Outside of work I mentor engineers on performance best practices, root cause analysis, and JVM internals.</p>
+      </div>
+      <div class="about-cards reveal">
+        <div class="about-card">
+          <div class="about-card-icon">⚡</div>
+          <h4>Performance at Scale</h4>
+          <p>End-to-end testing lifecycle: strategy, workload modelling, scripting, execution, monitoring, and reporting for systems handling millions of transactions.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🤖</div>
+          <h4>AI-Augmented Engineering</h4>
+          <p>Early adopter of GitHub Copilot + JMeter FeatherWand AI. Built AI-assisted automated reporting pipelines integrated with Git.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🔬</div>
+          <h4>Deep Diagnostics</h4>
+          <p>JVM heap dump, thread dump, and GC log analysis. Distributed tracing with Dynatrace and log correlation with Splunk and Kibana.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🧑‍🏫</div>
+          <h4>Team Leadership</h4>
+          <p>Engineering manager, mentor, and stakeholder communicator across global cross-functional teams in FinTech environments.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Experience</div>
+    <div class="section-title">Where I've built<br/><em style="font-style:italic;color:var(--accent)">things that scale.</em></div>
+    <div class="exp-list">
+
+      <!-- NIUM -->
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-period">Feb 2022 — Present</div>
+          <div class="exp-company">Nium</div>
+          <div class="exp-loc">Bengaluru, India</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Engineering Manager &amp;<br/>Lead Performance Engineer</div>
+          <p class="exp-desc">Leading and managing the performance engineering function across Nium's global payment infrastructure — overseeing testing strategy, team mentorship, and stakeholder communication across reconciliation, cards, and mass payment platforms.</p>
+          <ul class="exp-bullets">
+            <li>Led end-to-end performance testing for high-scale global payment systems including reconciliation, cards, and mass payment platforms.</li>
+            <li>Reduced JMeter scripting time by ~40% using GitHub Copilot for complex test plans, custom functions, and Groovy script generation.</li>
+            <li>Co-built an AI-assisted automated reporting pipeline with QA and DevOps teams — auto-generating structured performance reports post-execution and committing them to Git, eliminating all manual reporting effort.</li>
+            <li>Leveraged Dynatrace for end-to-end transaction tracing and Splunk for log correlation across complex microservices.</li>
+            <li>Performed JVM tuning through heap dump and thread dump analysis; used FeatherWand AI plugin to speed up script correlation and parameterisation.</li>
+            <li>Drove SLA compliance by collaborating with development and DevOps teams on bottleneck resolution across application, database, and infrastructure layers.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag tag-accent">JMeter</span>
+            <span class="tag tag-accent">GitHub Copilot</span>
+            <span class="tag tag-accent">Dynatrace</span>
+            <span class="tag">Splunk</span>
+            <span class="tag">Kafka</span>
+            <span class="tag">Cassandra</span>
+            <span class="tag">gRPC</span>
+            <span class="tag">JVM Tuning</span>
+            <span class="tag">GitLab CI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAYTM -->
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-period">Apr 2017 — Feb 2022</div>
+          <div class="exp-company">Paytm</div>
+          <div class="exp-loc">Noida, India</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Senior QA Lead &amp;<br/>QA Lead</div>
+          <p class="exp-desc">Led performance validation for Paytm Wallet and Payment Gateway — one of India's largest payment platforms — supporting large-scale financial transactions including peak load, promotional surges, and high-availability scenarios.</p>
+          <ul class="exp-bullets">
+            <li>Designed and executed comprehensive performance testing strategies for peak loads, promotional surges, and high-availability scenarios.</li>
+            <li>Performed root cause analysis for performance degradations using New Relic, Kibana, and Linux monitoring tools.</li>
+            <li>Conducted JVM analysis including GC log review, heap profiling, and thread dump analysis for production incident resolution.</li>
+            <li>Collaborated with Dev and DevOps teams to resolve bottlenecks in payment processing flows.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag tag-accent">JMeter</span>
+            <span class="tag tag-accent">New Relic</span>
+            <span class="tag">Kibana</span>
+            <span class="tag">LoadRunner</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">Redis</span>
+            <span class="tag">Linux</span>
+            <span class="tag">JVM Analysis</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- XAVIENT -->
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-period">Apr 2016 — Sep 2016</div>
+          <div class="exp-company">Xavient Information Systems</div>
+          <div class="exp-loc">India</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Software Test Engineer</div>
+          <p class="exp-desc">Executed performance testing for Neustar's telecom number porting services platform (US client engagement), ensuring reliability and throughput under production-equivalent loads.</p>
+          <div class="exp-tags">
+            <span class="tag">JMeter</span>
+            <span class="tag">Telecom Systems</span>
+            <span class="tag">US Client Engagement</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CRESTECH -->
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-period">Apr 2013 — Apr 2016</div>
+          <div class="exp-company">CresTech Software Systems</div>
+          <div class="exp-loc">India</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Quality Engineer</div>
+          <p class="exp-desc">Delivered performance testing engagements for major e-commerce platforms. Built and maintained JMeter-based performance testing frameworks across multiple concurrent client projects.</p>
+          <ul class="exp-bullets">
+            <li>Performance tested Snapdeal, Yepme, Domino's, and Pizza Hut — covering load simulation, peak traffic modelling, and infrastructure analysis.</li>
+            <li>Built JMeter-based performance testing frameworks and automation scripts for multiple client projects.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">JMeter</span>
+            <span class="tag">E-Commerce</span>
+            <span class="tag">Load Testing</span>
+            <span class="tag">Automation Scripts</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Skills</div>
+    <div class="section-title">Tools of<br/><em style="font-style:italic;color:var(--accent)">the craft.</em></div>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Performance Testing</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Apache JMeter</span>
+          <span class="skill-pill">HP LoadRunner</span>
+          <span class="skill-pill">FeatherWand AI Plugin</span>
+          <span class="skill-pill">Load Testing</span>
+          <span class="skill-pill">Stress Testing</span>
+          <span class="skill-pill">Spike Testing</span>
+          <span class="skill-pill">Endurance Testing</span>
+          <span class="skill-pill">Workload Modelling</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">AI &amp; Automation</div>
+        <div class="skill-pills">
+          <span class="skill-pill">GitHub Copilot</span>
+          <span class="skill-pill">AI-assisted Scripting</span>
+          <span class="skill-pill">Automated Reporting Pipeline</span>
+          <span class="skill-pill">AI Heap Dump Analysis</span>
+          <span class="skill-pill">Git-integrated Reporting</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Monitoring &amp; APM</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Dynatrace</span>
+          <span class="skill-pill">New Relic</span>
+          <span class="skill-pill">Splunk</span>
+          <span class="skill-pill">Kibana</span>
+          <span class="skill-pill">Perfmon</span>
+          <span class="skill-pill">vmstat</span>
+          <span class="skill-pill">netstat</span>
+          <span class="skill-pill">SAR</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">JVM &amp; Analysis</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Heap Dump Analysis</span>
+          <span class="skill-pill">Thread Dump Analysis</span>
+          <span class="skill-pill">GC Log Analysis</span>
+          <span class="skill-pill">JVM Tuning</span>
+          <span class="skill-pill">Memory Profiling</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Databases &amp; Infra</div>
+        <div class="skill-pills">
+          <span class="skill-pill">MySQL</span>
+          <span class="skill-pill">SQL Server</span>
+          <span class="skill-pill">Redis</span>
+          <span class="skill-pill">Elasticsearch</span>
+          <span class="skill-pill">Cassandra</span>
+          <span class="skill-pill">Kafka</span>
+          <span class="skill-pill">RabbitMQ</span>
+          <span class="skill-pill">Apache Tomcat</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Platforms &amp; CI/CD</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Linux</span>
+          <span class="skill-pill">Jenkins</span>
+          <span class="skill-pill">GitLab CI</span>
+          <span class="skill-pill">Git</span>
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">.NET</span>
+          <span class="skill-pill">gRPC</span>
+          <span class="skill-pill">Web APIs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Major Projects</div>
+    <div class="section-title">Systems I've<br/><em style="font-style:italic;color:var(--accent)">stress-tested.</em></div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-num">01 — Nium</div>
+        <div class="project-name">Global Payments Platform</div>
+        <p class="project-desc">Performance testing for reconciliation, cards, and mass payment systems. Focused on throughput, latency, and SLA validation under peak load. Used Dynatrace for end-to-end transaction tracing and Splunk for log correlation. Co-built an AI-assisted automated reporting pipeline for structured, Git-integrated post-test report generation.</p>
+        <div class="project-tags">
+          <span class="tag tag-accent">JMeter</span>
+          <span class="tag">Dynatrace</span>
+          <span class="tag">Splunk</span>
+          <span class="tag">GitHub Copilot</span>
+          <span class="tag">FeatherWand AI</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-num">02 — Paytm</div>
+        <div class="project-name">Wallet &amp; Payment Gateway</div>
+        <p class="project-desc">Performance validation for high-volume financial transactions on one of India's largest payment platforms. Included JVM tuning, GC log analysis, heap profiling, and bottleneck analysis for production incidents. Designed strategies for peak load, promotional surges, and high-availability scenarios.</p>
+        <div class="project-tags">
+          <span class="tag tag-accent">New Relic</span>
+          <span class="tag">Kibana</span>
+          <span class="tag">JVM Tuning</span>
+          <span class="tag">LoadRunner</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-num">03 — Neustar (US Client)</div>
+        <div class="project-name">Telecom Number Porting Services</div>
+        <p class="project-desc">Performance testing for Neustar's telecom number porting services platform — an enterprise US client engagement. Ensured system reliability, throughput, and response times under production-equivalent conditions for critical number portability infrastructure.</p>
+        <div class="project-tags">
+          <span class="tag">JMeter</span>
+          <span class="tag">Telecom</span>
+          <span class="tag">Enterprise</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-num">04 — E-Commerce</div>
+        <div class="project-name">Snapdeal, Yepme, Domino's &amp; Pizza Hut</div>
+        <p class="project-desc">Delivered performance testing for four major e-commerce and food delivery platforms. Built and maintained JMeter-based frameworks covering load simulation, peak traffic modelling, and infrastructure analysis — running multiple concurrent client engagements simultaneously.</p>
+        <div class="project-tags">
+          <span class="tag">JMeter</span>
+          <span class="tag">Load Simulation</span>
+          <span class="tag">Peak Traffic</span>
+          <span class="tag">Frameworks</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="case-studies">
+  <div class="container">
+    <div class="section-label">Case Studies</div>
+    <div class="section-title">Deep-dives into<br/><em style="font-style:italic;color:var(--accent)">real production problems.</em></div>
+    <p class="cs-intro">Root cause analysis, full-stack diagnosis, and measurable outcomes — from the systems I've performance-tested, tuned, and scaled in production.</p>
+
+    <!-- INDEX LIST -->
+    <div class="cs-list reveal">
+      <div class="cs-row">
+        <div class="cs-row-left">
+          <span class="cs-row-num">01</span>
+          <div class="cs-row-info">
+            <div class="cs-row-company">Nium · Global Payments</div>
+            <div class="cs-row-title">Scaling Payment Infrastructure — Cards, Reconciliation &amp; Mass Payouts</div>
+          </div>
+        </div>
+        <div class="cs-row-right">
+          <span class="cs-badge">In Progress</span>
+          <span class="cs-arrow">↗</span>
+        </div>
+      </div>
+      <div class="cs-row">
+        <div class="cs-row-left">
+          <span class="cs-row-num">02</span>
+          <div class="cs-row-info">
+            <div class="cs-row-company">Paytm · Wallet &amp; Gateway</div>
+            <div class="cs-row-title">Performance Validation for India's Largest Payment Platform</div>
+          </div>
+        </div>
+        <div class="cs-row-right">
+          <span class="cs-badge">In Progress</span>
+          <span class="cs-arrow">↗</span>
+        </div>
+      </div>
+      <a href="#cs-recon" class="cs-row cs-row-link">
+        <div class="cs-row-left">
+          <span class="cs-row-num">03</span>
+          <div class="cs-row-info">
+            <div class="cs-row-company">FinTech · Reconciliation Engineering</div>
+            <div class="cs-row-title">Scaling a Financial Reconciliation System — 7k → 300k Records (42× capacity)</div>
+          </div>
+        </div>
+        <div class="cs-row-right">
+          <span class="cs-badge">Full Case Study ↓</span>
+          <span class="cs-arrow">↓</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- FULL CASE STUDY: RECONCILIATION -->
+    <div class="cs-full reveal" id="cs-recon">
+
+      <div class="cs-full-header">
+        <div class="cs-full-eyebrow">Case Study · FinTech Engineering · Reconciliation</div>
+        <div class="cs-full-title">Scaling a Financial Reconciliation System<br/>from 7,000 to 300,000+ Records</div>
+        <div class="cs-full-meta">Platform: AWS ECS + RDS PostgreSQL + RabbitMQ · Runtime: Node.js · Domain: Payments Reconciliation</div>
+        <div class="cs-metrics">
+          <div class="cs-metric">
+            <div class="cs-metric-num">42×</div>
+            <div class="cs-metric-label">Capacity increase</div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-metric-num">95%</div>
+            <div class="cs-metric-label">Recon time cut</div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-metric-num">75%</div>
+            <div class="cs-metric-label">Download faster</div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-metric-num">4×</div>
+            <div class="cs-metric-label">DB pool headroom</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-body">
+
+        <!-- OVERVIEW -->
+        <div class="cs-section">
+          <div class="cs-section-title">Overview</div>
+          <div class="cs-prose">
+            <p>A production financial reconciliation system — responsible for matching remittance and card transaction data across multiple institutions — had hit a <strong>hard ceiling at 7,000 records per rule execution</strong>. Beyond that threshold, the application would stall, database connections would exhaust, and processing would become unresponsive.</p>
+            <p>Root cause analysis revealed the constraint was not one bottleneck but a <strong>compounding set of failures across all four layers</strong> of the stack: application, infrastructure, database, and frontend. Each layer had to be addressed simultaneously to achieve the outcome.</p>
+          </div>
+        </div>
+
+        <!-- ARCHITECTURE -->
+        <div class="cs-section">
+          <div class="cs-section-title">System Architecture</div>
+          <div class="cs-arch">
+            <div class="cs-arch-step"><span class="cs-arch-num">01</span><div class="cs-arch-text"><strong>File ingestion from S3</strong><span>Source files (remittance and card data) pulled from Amazon S3 and parsed into structured JSON for downstream processing.</span></div></div>
+            <div class="cs-arch-step"><span class="cs-arch-num">02</span><div class="cs-arch-text"><strong>Core system processing</strong><span>Parsed data enters the core business logic layer for validation, schema normalisation, and ledger record creation.</span></div></div>
+            <div class="cs-arch-step"><span class="cs-arch-num">03</span><div class="cs-arch-text"><strong>File aggregation</strong><span>Multiple files submitted for a single reconciliation run are merged into a unified processing unit before being published downstream.</span></div></div>
+            <div class="cs-arch-step"><span class="cs-arch-num">04</span><div class="cs-arch-text"><strong>Queue publication via RabbitMQ</strong><span>Aggregated data published to RabbitMQ for asynchronous, decoupled processing — enabling the consumer layer to scale independently of ingestion.</span></div></div>
+            <div class="cs-arch-step"><span class="cs-arch-num">05</span><div class="cs-arch-text"><strong>Consumer ingestion</strong><span>A dedicated consumer service pulls remittance and card records from the queue and prepares the reconciliation payload with Side A, Side B, and applicable Rule IDs.</span></div></div>
+            <div class="cs-arch-step"><span class="cs-arch-num">06</span><div class="cs-arch-text"><strong>Rule engine dispatch</strong><span>The rule engine applies configurable matching logic to identify reconciled, unmatched, and exception records across both data sets.</span></div></div>
+            <div class="cs-arch-step"><span class="cs-arch-num">07</span><div class="cs-arch-text"><strong>Result persistence &amp; integrations</strong><span>Reconciled results written to the PostgreSQL ledger. External integrations and downstream notifications triggered post-reconciliation.</span></div></div>
+            <div class="cs-arch-step"><span class="cs-arch-num">08</span><div class="cs-arch-text"><strong>Reporting APIs &amp; UI</strong><span>Read-optimised APIs expose reconciled data for dashboards, manual reconciliation controls, and operational reporting.</span></div></div>
+          </div>
+          <div class="cs-stack">
+            <span class="tag tag-accent">AWS ECS</span><span class="tag">Amazon S3</span><span class="tag">RabbitMQ</span><span class="tag">PostgreSQL RDS</span><span class="tag">Node.js</span><span class="tag">Sequelize ORM</span><span class="tag">AWS ALB</span><span class="tag">ELK Stack</span><span class="tag">Docker</span>
+          </div>
+        </div>
+
+        <!-- ROOT CAUSE -->
+        <div class="cs-section">
+          <div class="cs-section-title">Root Cause Analysis</div>
+          <div class="cs-rca">
+            <div class="cs-rca-group">
+              <div class="cs-rca-layer">Application Layer</div>
+              <ul class="cs-rca-items">
+                <li>Synchronous logger blocking the event loop during S3 ingestion</li>
+                <li>UV thread pool too small (2 workers — default)</li>
+                <li>O(n²) groupBy function in rule engine hot path</li>
+                <li>Unnecessary Sequelize transactions causing connection hold</li>
+                <li>DB connection pool capped at 50 connections</li>
+              </ul>
+            </div>
+            <div class="cs-rca-group">
+              <div class="cs-rca-layer">Infrastructure Layer</div>
+              <ul class="cs-rca-items">
+                <li>ALB timeout at 60s — causing 504s on large rule sets</li>
+                <li>No ECS autoscaling — fixed task count under peak load</li>
+                <li>RMQ on Fargate re-triggering same rule_id every 3 minutes</li>
+                <li>Consumer storm causing duplicate processing</li>
+              </ul>
+            </div>
+            <div class="cs-rca-group">
+              <div class="cs-rca-layer">Database Layer</div>
+              <ul class="cs-rca-items">
+                <li>Heavy GROUP BY queries with no supporting indexes</li>
+                <li>Duplicate indexes causing write amplification</li>
+                <li>Misconfigured table partitioning — unnecessary multi-partition scans</li>
+                <li>Auto-vacuum not tuned — table bloat degrading query plans</li>
+                <li>RDS defaults not aligned to workload profile</li>
+              </ul>
+            </div>
+            <div class="cs-rca-group">
+              <div class="cs-rca-layer">Frontend Layer</div>
+              <ul class="cs-rca-items">
+                <li>Entire large datasets loaded into browser memory at once</li>
+                <li>JavaScript heap out-of-memory on large Side B data</li>
+                <li>Fetch timeouts on long-running data loads</li>
+                <li>Browser hangs during dataset rendering</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- FIXES -->
+        <div class="cs-section">
+          <div class="cs-section-title">Engineering Solutions</div>
+          <div class="cs-fixes">
+            <div class="cs-fix"><span class="cs-fix-layer">Application</span><span class="cs-fix-what">Logger: sync → async + isolated ELK cluster</span><span class="cs-fix-result">Eliminated application halts during high-frequency S3 ingestion windows</span></div>
+            <div class="cs-fix"><span class="cs-fix-layer">Application</span><span class="cs-fix-what">Event pool: 2 → 16 workers (UV_THREADPOOL_SIZE)</span><span class="cs-fix-result">Normalised P95 &amp; P99 response times under concurrent reconciliation load</span></div>
+            <div class="cs-fix"><span class="cs-fix-layer">Application</span><span class="cs-fix-what">groupBy: O(n²) → O(n) hash-map implementation</span><span class="cs-fix-result">CPU dropped materially on all groupBy-heavy rules; viable at 300k records</span></div>
+            <div class="cs-fix"><span class="cs-fix-layer">Application</span><span class="cs-fix-what">Removed redundant Sequelize transactions</span><span class="cs-fix-result">Connection hold time reduced; AcquireTimeoutError fully eliminated</span></div>
+            <div class="cs-fix"><span class="cs-fix-layer">Application</span><span class="cs-fix-what">DB connection pool: 50 → 200 connections</span><span class="cs-fix-result">Pool sized to match ECS fleet concurrency profile at peak</span></div>
+            <div class="cs-fix"><span class="cs-fix-layer">Infrastructure</span><span class="cs-fix-what">ALB timeout: 60 seconds → 20 minutes</span><span class="cs-fix-result">504 gateway failures on large rule sets fully eliminated in production</span></div>
+            <div class="cs-fix"><span class="cs-fix-layer">Infrastructure</span><span class="cs-fix-what">ECS autoscaling at 80% CPU utilisation</span><span class="cs-fix-result">Fleet scales out automatically during batch peaks; contracts at idle</span></div>
+            <div class="cs-fix"><span class="cs-fix-layer">Infrastructure</span><span class="cs-fix-what">RMQ: Fargate → dedicated ECS node</span><span class="cs-fix-result">Consumer storm resolved; exactly-once processing semantics restored</span></div>
+            <div class="cs-fix"><span class="cs-fix-layer">Database</span><span class="cs-fix-what">Composite indexes on GROUP BY &amp; WHERE columns</span><span class="cs-fix-result">Slow query execution times reduced by an order of magnitude</span></div>
+            <div class="cs-fix"><span class="cs-fix-layer">Database</span><span class="cs-fix-what">Partitioning corrected + auto-vacuum tuned</span><span class="cs-fix-result">Query planner accuracy restored; table bloat cleared</span></div>
+            <div class="cs-fix"><span class="cs-fix-layer">Database</span><span class="cs-fix-what">Duplicate indexes removed; PostgreSQL params tuned</span><span class="cs-fix-result">Write amplification eliminated; memory &amp; timeout aligned to workload</span></div>
+            <div class="cs-fix"><span class="cs-fix-layer">Manual Recon</span><span class="cs-fix-what">Reconciliation code optimised end-to-end</span><span class="cs-fix-result">Processing time: 90 minutes → 4 minutes; RDS CPU normalised from 100%</span></div>
+            <div class="cs-fix"><span class="cs-fix-layer">Manual Recon</span><span class="cs-fix-what">Bank statement download parallelised</span><span class="cs-fix-result">Download time: 20 minutes → 5 minutes (75% reduction)</span></div>
+            <div class="cs-fix"><span class="cs-fix-layer">Frontend</span><span class="cs-fix-what">Server-side pagination &amp; lazy loading enforced</span><span class="cs-fix-result">Heap crash, timeout, and browser hang eliminated on large Side B datasets</span></div>
+            <div class="cs-fix"><span class="cs-fix-layer">Frontend</span><span class="cs-fix-what">API response size limits introduced</span><span class="cs-fix-result">UI now requests bounded pages — stable at all production data volumes</span></div>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="cs-section">
+          <div class="cs-section-title">Before &amp; After Results</div>
+          <table class="cs-results-table">
+            <thead>
+              <tr><th>Metric</th><th>Before</th><th>After</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Records per rule</td><td>7,000</td><td class="after">300,000+</td></tr>
+              <tr><td>Manual reconciliation time</td><td>90 min</td><td class="after">4 min</td></tr>
+              <tr><td>Bank statement download</td><td>20 min</td><td class="after">5 min</td></tr>
+              <tr><td>DB connection pool</td><td>50 (exhaustion)</td><td class="after">200 (stable)</td></tr>
+              <tr><td>Event loop workers</td><td>2 (default)</td><td class="after">16</td></tr>
+              <tr><td>ALB gateway errors</td><td>Recurring 504s</td><td class="after">Eliminated</td></tr>
+              <tr><td>Logger mode</td><td>Sync (blocking)</td><td class="after">Async</td></tr>
+              <tr><td>RDS CPU (manual recon)</td><td>100% (halt)</td><td class="after">Normal range</td></tr>
+              <tr><td>RMQ consumer behaviour</td><td>Re-trigger every 3 min</td><td class="after">Exactly-once</td></tr>
+              <tr><td>UI on large datasets</td><td>Heap crash</td><td class="after">Paginated, stable</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- PRINCIPLES -->
+        <div class="cs-section">
+          <div class="cs-section-title">Engineering Principles</div>
+          <div class="cs-principles">
+            <div class="cs-principle"><div class="cs-principle-num">1</div><div class="cs-principle-body"><strong>Bottlenecks compound.</strong><p>Fixing one layer in isolation would not have moved the needle. Full-stack profiling was required to surface the true constraint hierarchy — all four layers needed simultaneous, evidence-driven attention.</p></div></div>
+            <div class="cs-principle"><div class="cs-principle-num">2</div><div class="cs-principle-body"><strong>O(n²) algorithms are latent production failures.</strong><p>The groupBy logic performed acceptably at 2,000 records. It only became the dominant CPU cost at scale. Complexity analysis must cover every function sitting on a hot path.</p></div></div>
+            <div class="cs-principle"><div class="cs-principle-num">3</div><div class="cs-principle-body"><strong>Database defaults are not production configurations.</strong><p>PostgreSQL, Sequelize, and RabbitMQ all shipped with defaults calibrated for general use, not high-concurrency financial batch processing. Every parameter needs review against the real workload profile before going to volume.</p></div></div>
+            <div class="cs-principle"><div class="cs-principle-num">4</div><div class="cs-principle-body"><strong>Platform scheduling affects application semantics.</strong><p>The RMQ consumer storm was caused by Fargate task scheduling interacting with message acknowledgement timing — not a code bug. Infrastructure behaviour must be tested and understood, not assumed.</p></div></div>
+            <div class="cs-principle"><div class="cs-principle-num">5</div><div class="cs-principle-body"><strong>Performance environments must faithfully mirror production.</strong><p>The 504 failure was caught under 3× load in the performance environment and appeared in production two months later. A well-configured performance environment is insurance, not a nice-to-have.</p></div></div>
+            <div class="cs-principle"><div class="cs-principle-num">6</div><div class="cs-principle-body"><strong>Frontend scalability is part of the system.</strong><p>A JavaScript heap crash in the browser is as much a production failure as a database timeout. API design must account for the memory budget of every consuming client — not just the server.</p></div></div>
+          </div>
+        </div>
+
+      </div><!-- /cs-body -->
+    </div><!-- /cs-full -->
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="section-label">Contact</div>
+      <div class="contact-big reveal">
+        Let's talk<br/><em>performance.</em>
+      </div>
+      <p class="contact-sub reveal">
+        Whether you're scaling a payment system, hunting a production bottleneck, or building a performance engineering function — I'd love to hear from you.
+      </p>
+      <div class="contact-links reveal">
+        <a href="mailto:viploveagarwal13@gmail.com" class="btn btn-primary">Send an Email</a>
+      </div>
+      <div class="contact-detail reveal">
+        <div class="contact-row">
+          <span>email</span>
+          <a href="mailto:viploveagarwal13@gmail.com">viploveagarwal13@gmail.com</a>
+        </div>
+        <div class="contact-row">
+          <span>phone</span>
+          <span>+91 88827 75573</span>
+        </div>
+        <div class="contact-row">
+          <span>based in</span>
+          <span>India</span>
+        </div>
+        <div class="contact-row">
+          <span>open to</span>
+          <span>Senior / Lead / Manager roles in Performance Engineering</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Viplove Agarwal — Performance Engineering Leader</p>
+  <p>Built with HTML · Hosted on GitHub Pages</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
