@@ -392,6 +392,74 @@ section{padding:6rem 2.5rem}
 }
 .project-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
 
+/* IMPACT */
+#impact{background:var(--bg2)}
+.impact-intro{
+  font-size:0.95rem;
+  color:var(--muted2);
+  max-width:700px;
+  line-height:1.85;
+  margin-bottom:2.5rem;
+}
+.impact-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1rem;
+}
+.impact-card{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:1.75rem;
+}
+.impact-meta{
+  font-family:var(--mono);
+  font-size:0.68rem;
+  color:var(--muted);
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  margin-bottom:0.75rem;
+}
+.impact-stat{
+  font-family:var(--serif);
+  font-size:2rem;
+  color:var(--accent);
+  margin-bottom:0.5rem;
+  line-height:1;
+}
+.impact-card h3{
+  font-family:var(--serif);
+  font-size:1.4rem;
+  color:var(--text);
+  margin-bottom:0.75rem;
+  line-height:1.15;
+}
+.impact-card p{
+  font-size:0.85rem;
+  color:var(--muted2);
+  line-height:1.8;
+  margin-bottom:1rem;
+}
+.impact-highlights{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:0.7rem;
+}
+.impact-highlights li{
+  font-size:0.85rem;
+  color:var(--muted2);
+  padding-left:1rem;
+  position:relative;
+  line-height:1.65;
+}
+.impact-highlights li::before{
+  content:'▸';
+  position:absolute;
+  left:0;
+  color:var(--accent);
+}
+
 /* CONTACT */
 #contact{background:var(--bg2)}
 .contact-inner{
@@ -399,6 +467,24 @@ section{padding:6rem 2.5rem}
 }
 .contact-big{
   font-family:var(--serif);
+  font-size:clamp(2.5rem,5vw,4.5rem);
+  font-weight:400;
+  line-height:1.05;
+  margin-bottom:1.5rem;
+  letter-spacing:-0.02em;
+}
+.contact-big em{font-style:italic;color:var(--accent)}
+.contact-sub{
+  font-size:1rem;
+  color:var(--muted2);
+  line-height:1.8;
+  margin-bottom:2.5rem;
+  max-width:500px;
+}
+.contact-links{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+.contact-detail{
+  display:flex;flex-direction:column;gap:0.75rem;
+}
   font-size:clamp(2.5rem,5vw,4.5rem);
   font-weight:400;
   line-height:1.05;
@@ -668,6 +754,7 @@ footer p{
   .cs-rca{grid-template-columns:1fr}
   .cs-fix{grid-template-columns:1fr;gap:0.25rem}
   .cs-fix-layer{font-size:0.6rem}
+  .impact-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -681,6 +768,7 @@ footer p{
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#impact">Impact</a></li>
     <li><a href="#case-studies">Case Studies</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -703,6 +791,7 @@ footer p{
     </p>
     <div class="hero-cta">
       <a href="#experience" class="btn btn-primary">View Experience</a>
+      <a href="#impact" class="btn btn-ghost">See Impact</a>
       <a href="mailto:viploveagarwal13@gmail.com" class="btn btn-ghost">Get in Touch</a>
     </div>
     <div class="hero-stats">
@@ -1014,6 +1103,50 @@ footer p{
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section id="impact">
+  <div class="container">
+    <div class="section-label">Impact</div>
+    <div class="section-title">Outcomes that moved the needle<br/><em style="font-style:italic;color:var(--accent)">for teams and users.</em></div>
+    <p class="impact-intro">The work I do is built around measurable change: reducing friction, shrinking incident risk, and turning performance data into decisions that improve real journeys.</p>
+    <div class="impact-grid">
+      <div class="impact-card reveal">
+        <div class="impact-meta">Operational impact</div>
+        <div class="impact-stat">40%</div>
+        <h3>Faster JMeter scripting</h3>
+        <p>Used GitHub Copilot, FeatherWand AI, and automation workflows to cut scripting and reporting effort materially while improving consistency across performance test suites.</p>
+        <ul class="impact-highlights">
+          <li>Reduced manual effort in complex test creation</li>
+          <li>Accelerated handoff between engineering and QA</li>
+          <li>Improved reproducibility of reports and test artifacts</li>
+        </ul>
+      </div>
+      <div class="impact-card reveal">
+        <div class="impact-meta">Product impact</div>
+        <div class="impact-stat">10×</div>
+        <h3>Built for peak and surge scenarios</h3>
+        <p>Designed load strategies and diagnostics for payment and commerce platforms where traffic spikes, promotional events, and production incidents can materially affect user experience and revenue.</p>
+        <ul class="impact-highlights">
+          <li>Validated resilience for high-volume financial flows</li>
+          <li>Reduced time to isolate bottlenecks in production</li>
+          <li>Aligned engineering teams around measurable SLA goals</li>
+        </ul>
+      </div>
+      <div class="impact-card reveal">
+        <div class="impact-meta">Leadership impact</div>
+        <div class="impact-stat">12+</div>
+        <h3>Mentored teams to own performance</h3>
+        <p>Led engineering initiatives that elevated performance engineering from a reactive function to an embedded practice across planning, validation, and incident readiness.</p>
+        <ul class="impact-highlights">
+          <li>Enabled cross-functional ownership of performance quality</li>
+          <li>Built playbooks for JVM, DB, and infra troubleshooting</li>
+          <li>Helped teams move faster without compromising reliability</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
